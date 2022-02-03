@@ -4,6 +4,7 @@ function initMap() {
     zoom: 18,
     center: origin,
   });
+<<<<<<< HEAD
   
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
@@ -109,6 +110,39 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   });
 }
 
+=======
+
+  new ClickEventHandler(map, origin);
+
+  const tourStops = [
+    [{ lat: -19.809310670494128, lng: -43.875454924852136 }, "Boynton Pass"],
+    [{ lat: -19.84597450970574, lng: -43.87978540781596}, "Airport Mesa"],
+    [{ lat: -19.87421347285986, lng: -43.90259261807454}, "Chapel of the Holy Cross"],
+    [{ lat: -19.887788107203463, lng: -43.91009878854517}, "Red Rock Crossing"],
+    [{ lat: -19.8503192928919, lng: -43.91529536810176}, "Bell Rock"],
+  ];
+  // Create an info window to share between markers.
+  const infoWindow = new google.maps.InfoWindow();
+
+  // Create the markers.
+  tourStops.forEach(([position, title], i) => {
+    const marker = new google.maps.Marker({
+      position,
+      map,
+      title: `${title}`,      
+      optimized: false,
+    });
+
+    // Add a click listener for each marker, and set up the info window.
+    marker.addListener("click", () => {
+      infoWindow.close();
+      infoWindow.setContent(marker.getTitle());
+      infoWindow.open(marker.getMap(), marker);
+    });
+  });
+}
+
+>>>>>>> e42969bad379fe9501f2ac671896977435bc3e95
 function isIconMouseEvent(e) {
   return "placeId" in e;
 }
@@ -116,14 +150,21 @@ function isIconMouseEvent(e) {
 class ClickEventHandler {
   origin;
   map;
+<<<<<<< HEAD
   tourStops;
+=======
+>>>>>>> e42969bad379fe9501f2ac671896977435bc3e95
   directionsService;
   directionsRenderer;
   placesService;
   infowindow;
   infowindowContent;
   constructor(map, origin) {
+<<<<<<< HEAD
      this.origin = origin;
+=======
+    this.origin = origin;
+>>>>>>> e42969bad379fe9501f2ac671896977435bc3e95
     this.map = map;
     this.directionsService = new google.maps.DirectionsService();
     this.directionsRenderer = new google.maps.DirectionsRenderer();
